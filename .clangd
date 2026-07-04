@@ -1,0 +1,6 @@
+CompileFlags:
+  Add:
+    - -I/home/mr/Desktop/testing/gdextension_cpp_example/godot-cpp/gen/include
+    - -I/home/mr/Desktop/testing/gdextension_cpp_example/godot-cpp/include
+    - -I/home/mr/Desktop/testing/gdextension_cpp_example/godot-cpp/gdextension
+    - -I/home/mr/Desktop/testing/xwiimote/lib
