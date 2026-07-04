@@ -2,26 +2,53 @@
 
 [ext_resource type="Script" uid="uid://8e2yl50d13q1" path="res://player.gd" id="1_ig7tw"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_ig7tw"]
+[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
+size = Vector3(1, 0.33599854, 1.4146729)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s04cq"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7dm0k"]
 
+[sub_resource type="Curve" id="Curve_lquwl"]
+_data = [Vector2(0.06707318, 0.52808994), 0.0, 0.0, 0, 0, Vector2(0.28048784, 0.37078655), 0.0, 0.0, 0, 0, Vector2(0.29268295, 0.79775286), 0.0, 0.0, 0, 0, Vector2(0.445122, 0), 0.0, 0.0, 0, 0, Vector2(0.45121956, 1), 0.0, 0.0, 0, 0, Vector2(0.6829269, 0.13483155), 0.0, 0.0, 0, 0, Vector2(0.68902445, 0.6292135), 0.0, 0.0, 0, 0, Vector2(0.76219517, 0.39325845), 0.0, 0.0, 0, 0, Vector2(0.8109757, 0.26966298), 0.0, 0.0, 0, 0, Vector2(0.8353659, 0.8314607), 0.0, 0.0, 0, 0, Vector2(0.9756098, 0.43820232), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 12
+
+[sub_resource type="CurveTexture" id="CurveTexture_h2yge"]
+curve = SubResource("Curve_lquwl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+transparency = 1
+albedo_color = Color(0.36078432, 0.35686275, 1, 0.6039216)
+albedo_texture = SubResource("CurveTexture_h2yge")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s04cq"]
+material = SubResource("StandardMaterial3D_ig7tw")
+size = Vector2(20, 20)
+
 [node name="Node3D" type="Node3D" unique_id=1071602478]
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1870401565]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9311776, 0)
 script = ExtResource("1_ig7tw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=98269330]
-mesh = SubResource("SphereMesh_ig7tw")
+[node name="Body" type="MeshInstance3D" parent="Player" unique_id=98269330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16799927, 0.20733643)
+mesh = SubResource("BoxMesh_ig7tw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1947105507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_s04cq")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=1059947618]
+transform = Transform3D(1, 0, 0, 0, 0.83303475, 0.5532207, 0, -0.5532207, 0.83303475, 0, 1.4421313, 1.97524)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=283253768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.8776603)
 mesh = SubResource("SphereMesh_7dm0k")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=410711228]
+mesh = SubResource("PlaneMesh_s04cq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1353046115]
+transform = Transform3D(1, 0, 0, 0, -0.14193746, 0.9898756, 0, -0.9898756, -0.14193746, 0, 12.214603, 0)

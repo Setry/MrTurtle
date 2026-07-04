@@ -2,12 +2,18 @@ extends CharacterBody3D
 
 
 const SPEED = 5.0
+const ACCEL_SPEED = 0.1
+const MAX_TURN_SPEED = 0.1
+const TURN_SPEED = 0.001
+const DRAG = 0.99
 const JUMP_VELOCITY = 4.5
 
 var board: GDExample
 var remote: GDExample
 
 var board_values: Vector4i
+
+var angular_speed: float
 
 func _ready() -> void:
 	print(GDExample.get_devices())
@@ -40,8 +46,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	#if not is_on_floor():
-	#	velocity += get_gravity() * delta
+
+	if position.y > 0:
+		velocity += get_gravity() * delta
+	else:
+		velocity.y += -position.y * 0.2 - velocity.y * 0.05
 
 	#print(board_values)
 
@@ -51,34 +60,45 @@ func _physics_process(delta: float) -> void:
 	var up_sum = max(1, board_values.x + board_values.z)
 	var down_sum = max(1, board_values.y + board_values.w)
 
-	if left_sum + right_sum < 1000:
-		return
-
-	print(left_sum, " ", right_sum)
+	if left_sum + right_sum < 5000:
+		up_sum = 1
+		down_sum = 1
+		left_sum = 1
+		right_sum = 1
 
 	# Normalize to -1..1
-	var lr = (float(left_sum) / (left_sum + right_sum) - 0.5) * 2
-	print(lr)
+	var lr = (float(right_sum) / (left_sum + right_sum) - 0.5) * 2
+	print("L/R: ", lr)
 
 	var ud = (float(up_sum) / (up_sum + down_sum) - 0.5) * 2
-	print(ud)
+	print("U/D: ", ud)
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept"):
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_axis("ui_up", "ui_down")
+	#var input_dir := Input.get_axis("ui_up", "ui_down")
 	#var lr_dir := Input.get_axis("ui_left", "ui_right")
-	var direction := (transform.basis * Vector3(0, 0, input_dir)).normalized()
+	var direction := (transform.basis * Vector3(0, 0, -ud)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCEL_SPEED)
+		velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCEL_SPEED)
 
-	rotation.y += lr * 0.05
+	velocity.x *= DRAG
+	velocity.z *= DRAG
+
+	var dir = sign((transform.basis.inverse() * velocity).z)
+	print("Speed = ", Vector2(velocity.x, velocity.z).length())
+
+	if abs(lr) > 0.1:
+		angular_speed = move_toward(angular_speed, dir * lr * MAX_TURN_SPEED, abs(lr) * Vector2(velocity.x, velocity.z).length() * TURN_SPEED)
+
+	angular_speed *= DRAG
+
+	rotation.y += angular_speed
+	$Body.rotation.x = move_toward($Body.rotation.x, -ud, 0.05)
+	$Body.rotation.z = move_toward($Body.rotation.z, -lr, 0.05)
 
 	move_and_slide()
