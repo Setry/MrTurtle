@@ -67,52 +67,54 @@ GDExample::~GDExample() {
 void GDExample::_process(double delta) {
 	if(iface == nullptr) return;
 
-	int ret = poll(fds, 1, 0);
-	if(ret == 0) {
-		// UtilityFunctions::print("No events");
-		return;
-	}
-
-	if(ret < 0) {
-		UtilityFunctions::print("Poll Error");
-		return;
-	}
-
-	struct xwii_event event;
-	ret = xwii_iface_dispatch(iface, &event, sizeof(event));
-	if(ret == -EAGAIN) {
-		return;
-	}
-	
-	if(ret) {
-		UtilityFunctions::print("Dispatch error");
-		return;
-	}
-
-	switch(event.type) {
-		case XWII_EVENT_BALANCE_BOARD:
-		{
-			if(!is_board) return;
-			
-			emit_signal("board_received", Vector4i(event.v.abs[0].x, event.v.abs[1].x, event.v.abs[2].x, event.v.abs[3].x));
-			break;
+	while(true) {
+		int ret = poll(fds, 1, 0);
+		if(ret == 0) {
+			// UtilityFunctions::print("No events");
+			return;
 		}
-		case XWII_EVENT_IR:
-		{
-			if(!is_remote) return;
 
-			PackedVector2Array arr;
+		if(ret < 0) {
+			UtilityFunctions::print("Poll Error");
+			return;
+		}
 
-			for(int i = 0; i < 4; i++) {
-				if(!xwii_event_ir_is_valid(&event.v.abs[i])) continue;
+		struct xwii_event event;
+		ret = xwii_iface_dispatch(iface, &event, sizeof(event));
+		if(ret == -EAGAIN) {
+			return;
+		}
+		
+		if(ret) {
+			UtilityFunctions::print("Dispatch error");
+			return;
+		}
 
-				double x = (double) event.v.abs[i].x / 1024;
-				double y = (double) event.v.abs[i].y / 768;
-				arr.append(Vector2(x, y));
+		switch(event.type) {
+			case XWII_EVENT_BALANCE_BOARD:
+			{
+				if(!is_board) return;
+				
+				emit_signal("board_received", Vector4i(event.v.abs[0].x, event.v.abs[1].x, event.v.abs[2].x, event.v.abs[3].x));
+				break;
 			}
+			case XWII_EVENT_IR:
+			{
+				if(!is_remote) return;
 
-			emit_signal("ir_received", arr);
-			break;
+				PackedVector2Array arr;
+
+				for(int i = 0; i < 4; i++) {
+					if(!xwii_event_ir_is_valid(&event.v.abs[i])) continue;
+
+					double x = (double) event.v.abs[i].x / 1024;
+					double y = (double) event.v.abs[i].y / 768;
+					arr.append(Vector2(x, y));
+				}
+
+				emit_signal("ir_received", arr);
+				break;
+			}
 		}
 	}
 

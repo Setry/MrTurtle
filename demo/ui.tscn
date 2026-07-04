@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ck5mm15hdbu4i"]
+
+[sub_resource type="Gradient" id="Gradient_xb563"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2efk4"]
+gradient = SubResource("Gradient_xb563")
+
+[node name="Ui" type="Node2D" unique_id=1662866030]
+
+[node name="Cursor" type="Node2D" parent="." unique_id=1802995809]
+
+[node name="Sprite2D" type="Sprite2D" parent="Cursor" unique_id=1593802171]
+texture = SubResource("GradientTexture2D_2efk4")

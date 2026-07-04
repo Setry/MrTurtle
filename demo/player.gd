@@ -15,6 +15,8 @@ var board_values: Vector4i
 
 var angular_speed: float
 
+var aim_pos: Vector2
+
 func _ready() -> void:
 	print(GDExample.get_devices())
 
@@ -41,7 +43,16 @@ func _ready() -> void:
 	)
 
 	remote.ir_received.connect(func(points: Array) -> void:
-		print(points)
+		# FIXME: very jank
+		if len(points) == 0:
+			aim_pos = Vector2(0.5, 0.5)
+			return
+
+		var avg = Vector2()
+		for p in points:
+			avg += p
+		avg /= len(points)
+		aim_pos = avg
 	)
 
 func _physics_process(delta: float) -> void:
@@ -106,3 +117,6 @@ func _physics_process(delta: float) -> void:
 	rotation.y += angular_speed
 
 	move_and_slide()
+
+func _process(_delta: float) -> void:
+	%Ui/Cursor.position = %Ui/Cursor.position.move_toward(aim_pos * get_viewport().get_visible_rect().size, 50)

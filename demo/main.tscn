@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bn2amkq5gecnx" path="res://Assets/kenney_watercraft-pack/Models/FBX format/gate.fbx" id="17_jq2sk"]
 [ext_resource type="PackedScene" uid="uid://d7xy74y0o2nn" path="res://Assets/kenney_watercraft-pack/Models/FBX format/ramp.fbx" id="18_4k2k6"]
 [ext_resource type="PackedScene" uid="uid://c5666nrp5hffa" path="res://Assets/kenney_watercraft-pack/Models/FBX format/ramp-wide.fbx" id="19_0rl1p"]
+[ext_resource type="PackedScene" uid="uid://ck5mm15hdbu4i" path="res://ui.tscn" id="20_82xsv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s04cq"]
 
@@ -118,3 +119,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4847565, 0, 11.642216)
 
 [node name="ramp-wide" parent="." unique_id=1870037865 instance=ExtResource("19_0rl1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.041893, 0, 11.418325)
+
+[node name="Ui" parent="." unique_id=1662866030 instance=ExtResource("20_82xsv")]
+unique_name_in_owner = true
