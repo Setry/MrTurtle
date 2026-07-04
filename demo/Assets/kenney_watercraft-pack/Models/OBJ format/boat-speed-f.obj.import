@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ofc75w6owjvm"
+path="res://.godot/imported/boat-speed-f.obj-1090630add0bc6f724e9ec763ed8be9a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/boat-speed-f.obj-1090630add0bc6f724e9ec763ed8be9a.mesh"]
+
+source_file="res://Assets/kenney_watercraft-pack/Models/OBJ format/boat-speed-f.obj"
+dest_files=["res://.godot/imported/boat-speed-f.obj-1090630add0bc6f724e9ec763ed8be9a.mesh", "res://.godot/imported/boat-speed-f.obj-1090630add0bc6f724e9ec763ed8be9a.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

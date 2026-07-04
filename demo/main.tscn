@@ -1,9 +1,24 @@
 [gd_scene format=3 uid="uid://udbflgrsjxeg"]
 
 [ext_resource type="Script" uid="uid://8e2yl50d13q1" path="res://player.gd" id="1_ig7tw"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
-size = Vector3(1, 0.33599854, 1.4146729)
+[ext_resource type="PackedScene" uid="uid://bm2l4k3kgsdo6" path="res://Assets/Turtle.blend" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cblyknjxepq07" path="res://Assets/kenney_watercraft-pack/Models/GLB format/buoy.glb" id="3_cegan"]
+[ext_resource type="PackedScene" uid="uid://b6s8j7a5gp2nt" path="res://Assets/kenney_watercraft-pack/Models/GLB format/buoy-flag.glb" id="4_82xsv"]
+[ext_resource type="PackedScene" uid="uid://c2qi8lkv58c6n" path="res://Assets/kenney_pirate-kit/Models/GLB format/barrel.glb" id="5_getpj"]
+[ext_resource type="PackedScene" uid="uid://t0lkcenbi82d" path="res://Assets/kenney_pirate-kit/Models/GLB format/chest.glb" id="6_ryguw"]
+[ext_resource type="PackedScene" uid="uid://qokxuh7lerpl" path="res://Assets/kenney_pirate-kit/Models/GLB format/flag-high-pennant.glb" id="7_d13ii"]
+[ext_resource type="PackedScene" uid="uid://dbnilnpu4i0gk" path="res://Assets/kenney_pirate-kit/Models/GLB format/flag-high.glb" id="8_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://eyc13xtw2tyo" path="res://Assets/kenney_pirate-kit/Models/GLB format/flag-pennant.glb" id="9_0odxb"]
+[ext_resource type="PackedScene" uid="uid://ctjxfdp5k77h0" path="res://Assets/kenney_pirate-kit/Models/GLB format/flag-pirate.glb" id="10_lswn8"]
+[ext_resource type="PackedScene" uid="uid://bd6al0qwv78v" path="res://Assets/kenney_pirate-kit/Models/GLB format/flag.glb" id="11_a6jrf"]
+[ext_resource type="PackedScene" uid="uid://bhhvwcaw2dqy3" path="res://Assets/kenney_pirate-kit/Models/GLB format/palm-bend.glb" id="12_xuqvo"]
+[ext_resource type="PackedScene" uid="uid://b7r72cn810xf5" path="res://Assets/kenney_pirate-kit/Models/GLB format/platform-planks.glb" id="13_qsp4k"]
+[ext_resource type="PackedScene" uid="uid://bhyd4omo8ldwv" path="res://Assets/kenney_pirate-kit/Models/GLB format/rocks-a.glb" id="14_kq58d"]
+[ext_resource type="PackedScene" uid="uid://c4pi800l5gdjd" path="res://Assets/kenney_pirate-kit/Models/GLB format/rocks-b.glb" id="15_seu75"]
+[ext_resource type="PackedScene" uid="uid://cqfx7s77adsar" path="res://Assets/kenney_pirate-kit/Models/GLB format/ship-wreck.glb" id="16_htxhm"]
+[ext_resource type="PackedScene" uid="uid://bn2amkq5gecnx" path="res://Assets/kenney_watercraft-pack/Models/FBX format/gate.fbx" id="17_jq2sk"]
+[ext_resource type="PackedScene" uid="uid://d7xy74y0o2nn" path="res://Assets/kenney_watercraft-pack/Models/FBX format/ramp.fbx" id="18_4k2k6"]
+[ext_resource type="PackedScene" uid="uid://c5666nrp5hffa" path="res://Assets/kenney_watercraft-pack/Models/FBX format/ramp-wide.fbx" id="19_0rl1p"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s04cq"]
 
@@ -32,9 +47,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9311776, 0)
 script = ExtResource("1_ig7tw")
 
-[node name="Body" type="MeshInstance3D" parent="Player" unique_id=98269330]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16799927, 0.20733643)
-mesh = SubResource("BoxMesh_ig7tw")
+[node name="Body" parent="Player" unique_id=1781838841 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(-0.017268678, 0, -0.99985087, 0, 1, 0, 0.99985087, 0, -0.017268678, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1947105507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -52,3 +66,54 @@ mesh = SubResource("PlaneMesh_s04cq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1353046115]
 transform = Transform3D(1, 0, 0, 0, -0.14193746, 0.9898756, 0, -0.9898756, -0.14193746, 0, 12.214603, 0)
+
+[node name="buoy2" parent="." unique_id=803766418 instance=ExtResource("3_cegan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6878502, 0, -1.0081253)
+
+[node name="buoy-flag2" parent="." unique_id=1715914369 instance=ExtResource("4_82xsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6051209, 0, -2.787571)
+
+[node name="barrel2" parent="." unique_id=430532457 instance=ExtResource("5_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.298358, 0, -5.8556204)
+
+[node name="chest2" parent="." unique_id=1206454914 instance=ExtResource("6_ryguw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0764837, 0, -3.8536682)
+
+[node name="flag-high-pennant2" parent="." unique_id=939757096 instance=ExtResource("7_d13ii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4320784, 0, -3.183807)
+
+[node name="flag-high2" parent="." unique_id=1499704137 instance=ExtResource("8_1u8w0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9154816, 0, -1.3382959)
+
+[node name="flag-pennant2" parent="." unique_id=19920634 instance=ExtResource("9_0odxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0351276, 0, 0.2916081)
+
+[node name="flag-pirate2" parent="." unique_id=1559651733 instance=ExtResource("10_lswn8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2771444, 0, -5.7433105)
+
+[node name="flag2" parent="." unique_id=800536460 instance=ExtResource("11_a6jrf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.535874, 0, 0.8297806)
+
+[node name="palm-bend2" parent="." unique_id=662688370 instance=ExtResource("12_xuqvo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.410286, 0, 3.0591917)
+
+[node name="platform-planks2" parent="." unique_id=1023485725 instance=ExtResource("13_qsp4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.703372, 0, 4.571815)
+
+[node name="rocks-a2" parent="." unique_id=2011756850 instance=ExtResource("14_kq58d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.688276, 0, 1.4471178)
+
+[node name="rocks-b2" parent="." unique_id=66848297 instance=ExtResource("15_seu75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.584718, 0, 5.51517)
+
+[node name="ship-wreck2" parent="." unique_id=1416827873 instance=ExtResource("16_htxhm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.135576, -2.7493868, 0.3371687)
+
+[node name="gate" parent="." unique_id=521917468 instance=ExtResource("17_jq2sk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5725307, 0, 8.650852)
+
+[node name="ramp" parent="." unique_id=2017802674 instance=ExtResource("18_4k2k6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4847565, 0, 11.642216)
+
+[node name="ramp-wide" parent="." unique_id=1870037865 instance=ExtResource("19_0rl1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.041893, 0, 11.418325)
