@@ -48,7 +48,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9311776, 0)
 script = ExtResource("1_ig7tw")
 
 [node name="Body" parent="Player" unique_id=1781838841 instance=ExtResource("2_0xm2m")]
-transform = Transform3D(-0.017268678, 0, -0.99985087, 0, 1, 0, 0.99985087, 0, -0.017268678, 0, 0, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1947105507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -56,6 +56,7 @@ shape = SubResource("SphereShape3D_s04cq")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=1059947618]
 transform = Transform3D(1, 0, 0, 0, 0.83303475, 0.5532207, 0, -0.5532207, 0.83303475, 0, 1.4421313, 1.97524)
+current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=283253768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.8776603)

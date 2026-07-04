@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const SPEED = 10.0
 const ACCEL_SPEED = 0.1
 const MAX_TURN_SPEED = 0.1
 const TURN_SPEED = 0.001
@@ -60,18 +60,16 @@ func _physics_process(delta: float) -> void:
 	var up_sum = max(1, board_values.x + board_values.z)
 	var down_sum = max(1, board_values.y + board_values.w)
 
-	if left_sum + right_sum < 5000:
-		up_sum = 1
-		down_sum = 1
-		left_sum = 1
-		right_sum = 1
-
 	# Normalize to -1..1
 	var lr = (float(right_sum) / (left_sum + right_sum) - 0.5) * 2
-	print("L/R: ", lr)
+	#print("L/R: ", lr)
 
-	var ud = (float(up_sum) / (up_sum + down_sum) - 0.5) * 2
-	print("U/D: ", ud)
+	var ud = (float(up_sum) / (up_sum + down_sum) - 0.25) * 2
+	#print("U/D: ", ud)
+
+	if left_sum + right_sum < 2000:
+		lr = 0
+		ud = 0
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept"):
@@ -81,7 +79,15 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	#var input_dir := Input.get_axis("ui_up", "ui_down")
 	#var lr_dir := Input.get_axis("ui_left", "ui_right")
-	var direction := (transform.basis * Vector3(0, 0, -ud)).normalized()
+
+	$Body.rotation.x = move_toward($Body.rotation.x, -ud, 0.05)
+	$Body.rotation.z = move_toward($Body.rotation.z, -lr, 0.05)
+
+	if ud < 0:
+		ud *= 0.75
+	else:
+		ud *= 1.5
+	var direction: Vector3 = (transform.basis * Vector3(0, 0, -ud)).normalized() * abs(ud)
 	if direction:
 		velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCEL_SPEED)
 		velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCEL_SPEED)
@@ -90,7 +96,7 @@ func _physics_process(delta: float) -> void:
 	velocity.z *= DRAG
 
 	var dir = sign((transform.basis.inverse() * velocity).z)
-	print("Speed = ", Vector2(velocity.x, velocity.z).length())
+	#print("Speed = ", Vector2(velocity.x, velocity.z).length())
 
 	if abs(lr) > 0.1:
 		angular_speed = move_toward(angular_speed, dir * lr * MAX_TURN_SPEED, abs(lr) * Vector2(velocity.x, velocity.z).length() * TURN_SPEED)
@@ -98,7 +104,5 @@ func _physics_process(delta: float) -> void:
 	angular_speed *= DRAG
 
 	rotation.y += angular_speed
-	$Body.rotation.x = move_toward($Body.rotation.x, -ud, 0.05)
-	$Body.rotation.z = move_toward($Body.rotation.z, -lr, 0.05)
 
 	move_and_slide()
