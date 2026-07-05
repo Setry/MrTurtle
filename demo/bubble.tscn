@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c5ftbf5fwv6dx"]
+
+[ext_resource type="PackedScene" uid="uid://cf3oruq66bdcx" path="res://Assets/Turtle.fbx" id="1_n2mqj"]
+[ext_resource type="Script" uid="uid://d3142dwmjqgn6" path="res://bubble.gd" id="1_y2db8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s04cq"]
+
+[node name="Bubble" type="RigidBody3D" unique_id=1753213588]
+gravity_scale = 0.0
+script = ExtResource("1_y2db8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=993638388]
+shape = SubResource("SphereShape3D_s04cq")
+
+[node name="Turtle" parent="." unique_id=708573670 instance=ExtResource("1_n2mqj")]

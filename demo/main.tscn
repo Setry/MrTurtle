@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://d7xy74y0o2nn" path="res://Assets/kenney_watercraft-pack/Models/FBX format/ramp.fbx" id="18_4k2k6"]
 [ext_resource type="PackedScene" uid="uid://c5666nrp5hffa" path="res://Assets/kenney_watercraft-pack/Models/FBX format/ramp-wide.fbx" id="19_0rl1p"]
 [ext_resource type="PackedScene" uid="uid://ck5mm15hdbu4i" path="res://ui.tscn" id="20_82xsv"]
-[ext_resource type="PackedScene" uid="uid://e7ppxi6wagfv" path="res://Assets/Turtle.glb" id="21_getpj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s04cq"]
 
@@ -33,7 +32,7 @@ albedo_texture = SubResource("CurveTexture_h2yge")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s04cq"]
 material = SubResource("StandardMaterial3D_ig7tw")
-size = Vector2(20, 20)
+size = Vector2(500, 500)
 
 [node name="Node3D" type="Node3D" unique_id=1071602478]
 
@@ -50,6 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_s04cq")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=1059947618]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.83303475, 0.5532207, 0, -0.5532207, 0.83303475, 0, 1.4421313, 1.97524)
 current = true
 
@@ -95,6 +95,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.041893, 0, 11.418325)
 
 [node name="Ui" parent="." unique_id=1662866030 instance=ExtResource("20_82xsv")]
 unique_name_in_owner = true
-
-[node name="Turtle2" parent="." unique_id=218219515 instance=ExtResource("21_getpj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1852255, 0, -0.7032067)
