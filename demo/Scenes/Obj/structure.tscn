@@ -18,6 +18,9 @@ size = Vector3(0.27856445, 2.0101318, 0.25439453)
 size = Vector3(0.25610352, 1.9782143, 0.2692871)
 
 [node name="Structure" type="RigidBody3D" unique_id=1644979697]
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="structure" parent="." unique_id=1297002824 instance=ExtResource("1_6wa8u")]
 

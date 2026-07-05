@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 
@@ -21,6 +22,8 @@ var aim_rot: float
 var board_calibration: Vector4i
 
 var t: float
+
+var score: int
 
 func _ready() -> void:
 	print(GDExample.get_devices())
@@ -187,3 +190,7 @@ func shoot() -> void:
 
 	get_parent().add_child(bub)
 	pass
+
+func hit():
+	score += 1
+	get_parent().find_child("Score").text = str(score)

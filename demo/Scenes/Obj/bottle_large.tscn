@@ -7,6 +7,9 @@ height = 0.8818054
 radius = 0.23095703
 
 [node name="Bottle-large" type="RigidBody3D" unique_id=2031937422]
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="bottle-large" parent="." unique_id=202953536 instance=ExtResource("1_843ck")]
 

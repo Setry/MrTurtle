@@ -6,6 +6,9 @@
 height = 1.0947266
 
 [node name="Barrel" type="RigidBody3D" unique_id=1001683369]
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="barrel" parent="." unique_id=351220381 instance=ExtResource("1_2c6jb")]
 

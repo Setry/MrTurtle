@@ -6,6 +6,9 @@
 size = Vector3(2.487732, 0.2548828, 2.4658813)
 
 [node name="Plattform" type="RigidBody3D" unique_id=211176596]
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="platform" parent="." unique_id=634947564 instance=ExtResource("1_0vrb5")]
 
