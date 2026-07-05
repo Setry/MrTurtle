@@ -24,7 +24,7 @@ protected:
 	GDExample();
 	~GDExample();
 	
-	void _process(double delta) override;
+	void _physics_process(double delta) override;
 	
 	void connect_to_device(String dev);
 	

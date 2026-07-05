@@ -1,6 +1,7 @@
 #include "gdexample.h"
 #include "godot_cpp/classes/wrapped.hpp"
 #include "godot_cpp/core/object.hpp"
+#include "godot_cpp/core/property_info.hpp"
 #include "godot_cpp/variant/string.hpp"
 #include "godot_cpp/variant/utility_functions.hpp"
 #include "godot_cpp/variant/variant.hpp"
@@ -42,6 +43,7 @@ static char *get_dev(int num)
 void GDExample::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("board_received", PropertyInfo(Variant::VECTOR4I, "values")));
 	ADD_SIGNAL(MethodInfo("ir_received", PropertyInfo(Variant::ARRAY, "points")));
+	ADD_SIGNAL(MethodInfo("key_received", PropertyInfo(Variant::STRING, "name"), PropertyInfo(Variant::BOOL, "pressed")));
 	ClassDB::bind_method(D_METHOD("get_is_remote"), &GDExample::get_is_remote);
 	ClassDB::bind_method(D_METHOD("get_is_board"), &GDExample::get_is_board);
 	ClassDB::bind_method(D_METHOD("connect_to_device", "device"), &GDExample::connect_to_device);
@@ -64,7 +66,7 @@ GDExample::~GDExample() {
 	xwii_iface_unref(iface);
 }
 
-void GDExample::_process(double delta) {
+void GDExample::_physics_process(double delta) {
 	if(iface == nullptr) return;
 
 	while(true) {
@@ -113,6 +115,64 @@ void GDExample::_process(double delta) {
 				}
 
 				emit_signal("ir_received", arr);
+				break;
+			}
+			case XWII_EVENT_KEY:
+			{
+				if(!is_remote) return;
+
+				bool pressed = event.v.key.state != 0;
+				unsigned int code = event.v.key.code;
+				const char *key;
+
+				switch (code) {
+					case XWII_KEY_LEFT: {
+						key = "left";
+						break;
+					}
+					case XWII_KEY_RIGHT: {
+						key = "right";
+						break;
+					}
+					case XWII_KEY_UP: {
+						key = "up";
+						break;
+					}
+					case XWII_KEY_DOWN: {
+						key = "down";
+						break;
+					}
+					case XWII_KEY_A: {
+						key = "a";
+						break;
+					}
+					case XWII_KEY_B: {
+						key = "b";
+						break;
+					}
+					case XWII_KEY_HOME: {
+						key = "home";
+						break;
+					}
+					case XWII_KEY_MINUS: {
+						key = "minus";
+						break;
+					}
+					case XWII_KEY_PLUS: {
+						key = "plus";
+						break;
+					}
+					case XWII_KEY_ONE: {
+						key = "one";
+						break;
+					}
+					case XWII_KEY_TWO: {
+						key = "two";
+						break;
+					}
+				}
+
+				emit_signal("key_received", String(key), pressed);
 				break;
 			}
 		}
