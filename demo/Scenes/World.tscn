@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://by3b0h33ppaj2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_45d1s"]
+frequency = 0.016
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p70al"]
+noise = SubResource("FastNoiseLite_45d1s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nsto"]
+albedo_color = Color(0.51805514, 0.5557254, 0.3131524, 1)
+albedo_texture = SubResource("NoiseTexture2D_p70al")
+
+[sub_resource type="QuadMesh" id="QuadMesh_j0i27"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eeuas"]
+albedo_color = Color(0.73559433, 0.4834501, 0.27749556, 1)
+subsurf_scatter_transmittance_color = Color(0.62697685, 0.38380027, 1.92523e-07, 1)
+
+[node name="World" type="Node3D" unique_id=391439327]
+
+[node name="Plane" type="MeshInstance3D" parent="." unique_id=1700735924]
+transform = Transform3D(500, 0, 0, 0, -2.1855694e-05, 500, 0, -500, -2.1855694e-05, 0, -7.0065203, 0)
+material_override = SubResource("StandardMaterial3D_5nsto")
+mesh = SubResource("QuadMesh_j0i27")
+surface_material_override/0 = SubResource("StandardMaterial3D_eeuas")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://by5767b7fbge1"]
 
-[ext_resource type="Shader" uid="uid://bygw3ukg86vw1" path="res://Scenes/Bubble.gdshader" id="1_v028q"]
+[ext_resource type="Shader" uid="uid://bygw3ukg86vw1" path="res://Shader/Bubble.gdshader" id="1_v028q"]
 [ext_resource type="Texture2D" uid="uid://cfoanler60onr" path="res://Assets/Texture/colorful.png" id="2_7e512"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7e512"]
