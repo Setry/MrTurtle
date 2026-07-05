@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://by5767b7fbge1"]
+
+[ext_resource type="Shader" uid="uid://bygw3ukg86vw1" path="res://Scenes/Bubble.gdshader" id="1_v028q"]
+[ext_resource type="Texture2D" uid="uid://cfoanler60onr" path="res://Assets/Texture/colorful.png" id="2_7e512"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7e512"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v028q"]
+noise = SubResource("FastNoiseLite_7e512")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yj3n2"]
+render_priority = 0
+shader = ExtResource("1_v028q")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_v028q")
+shader_parameter/smoothness = 0.05000000074506
+shader_parameter/color = ExtResource("2_7e512")
+
+[sub_resource type="SphereMesh" id="SphereMesh_hr3ji"]
+
+[node name="Bubblegum" type="Node" unique_id=951939290]
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1002040784]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=358859298]
+material_override = SubResource("ShaderMaterial_yj3n2")
+mesh = SubResource("SphereMesh_hr3ji")
