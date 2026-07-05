@@ -1,5 +1,12 @@
 [gd_scene format=3 uid="uid://by3b0h33ppaj2"]
 
+[ext_resource type="PackedScene" uid="uid://cyee2itpcu7k0" path="res://Scenes/Obj/barrel.tscn" id="1_45d1s"]
+[ext_resource type="PackedScene" uid="uid://j5ctx0rrv5qv" path="res://Scenes/Obj/bottle_large.tscn" id="1_p70al"]
+[ext_resource type="PackedScene" uid="uid://cmwpxis01uynn" path="res://Scenes/Obj/structure.tscn" id="2_45d1s"]
+[ext_resource type="PackedScene" uid="uid://b2m832wbhdscs" path="res://Scenes/Obj/chest.tscn" id="3_y7y61"]
+[ext_resource type="PackedScene" uid="uid://dji2lgrbdvd05" path="res://Scenes/Obj/plattform.tscn" id="4_q2d71"]
+[ext_resource type="PackedScene" uid="uid://b4enik4eigbha" path="res://Assets/kenney_pirate-kit/Models/FBX format/rocks-a.fbx" id="5_uo7di"]
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_45d1s"]
 frequency = 0.016
 
@@ -11,15 +18,37 @@ albedo_color = Color(0.51805514, 0.5557254, 0.3131524, 1)
 albedo_texture = SubResource("NoiseTexture2D_p70al")
 
 [sub_resource type="QuadMesh" id="QuadMesh_j0i27"]
+size = Vector2(500, 500)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eeuas"]
 albedo_color = Color(0.73559433, 0.4834501, 0.27749556, 1)
 subsurf_scatter_transmittance_color = Color(0.62697685, 0.38380027, 1.92523e-07, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0vrb5"]
+
 [node name="World" type="Node3D" unique_id=391439327]
 
+[node name="Barrel" parent="." unique_id=1001683369 instance=ExtResource("1_45d1s")]
+
 [node name="Plane" type="MeshInstance3D" parent="." unique_id=1700735924]
-transform = Transform3D(500, 0, 0, 0, -2.1855694e-05, 500, 0, -500, -2.1855694e-05, 0, -7.0065203, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -7.0065203, 0)
 material_override = SubResource("StandardMaterial3D_5nsto")
 mesh = SubResource("QuadMesh_j0i27")
 surface_material_override/0 = SubResource("StandardMaterial3D_eeuas")
+
+[node name="Bottle-large" parent="." unique_id=2031937422 instance=ExtResource("1_p70al")]
+
+[node name="Structure" parent="." unique_id=1644979697 instance=ExtResource("2_45d1s")]
+
+[node name="Chest" parent="." unique_id=443765137 instance=ExtResource("3_y7y61")]
+visible = true
+
+[node name="Plattform" parent="." unique_id=211176596 instance=ExtResource("4_q2d71")]
+
+[node name="RigidBody3D5" type="RigidBody3D" parent="." unique_id=1302428484]
+visible = false
+
+[node name="rocks-a" parent="RigidBody3D5" unique_id=2011762067 instance=ExtResource("5_uo7di")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D5" unique_id=617457107]
+shape = SubResource("CylinderShape3D_0vrb5")

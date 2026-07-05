@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cmwpxis01uynn"]
+
+[ext_resource type="PackedScene" uid="uid://e6hcas14w888" path="res://Assets/kenney_pirate-kit/Models/FBX format/structure.fbx" id="1_6wa8u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hr3ji"]
+size = Vector3(2.5186768, 0.20141602, 2.5177612)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5mbxn"]
+size = Vector3(0.24890137, 1.9893188, 0.2883911)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eeuas"]
+size = Vector3(0.25097656, 2.008789, 0.27416992)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yj3n2"]
+size = Vector3(0.27856445, 2.0101318, 0.25439453)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j0i27"]
+size = Vector3(0.25610352, 1.9782143, 0.2692871)
+
+[node name="Structure" type="RigidBody3D" unique_id=1644979697]
+
+[node name="structure" parent="." unique_id=1297002824 instance=ExtResource("1_6wa8u")]
+
+[node name="Top" type="CollisionShape3D" parent="." unique_id=58669853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0004272461, 2.109193, -0.001739502)
+shape = SubResource("BoxShape3D_hr3ji")
+
+[node name="Leg1" type="CollisionShape3D" parent="." unique_id=373755813]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9828737, 1.0125837, -0.99759984)
+shape = SubResource("BoxShape3D_5mbxn")
+
+[node name="Leg" type="CollisionShape3D" parent="." unique_id=1332898481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0072049, 1.003104, 1.0020137)
+shape = SubResource("BoxShape3D_eeuas")
+
+[node name="Leg2" type="CollisionShape3D" parent="." unique_id=1623220436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9988282, 1.0216675, 1.0087935)
+shape = SubResource("BoxShape3D_yj3n2")
+
+[node name="Leg3" type="CollisionShape3D" parent="." unique_id=1867765922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.995103, 1.0005748, -1.0107366)
+shape = SubResource("BoxShape3D_j0i27")

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b2m832wbhdscs"]
+
+[ext_resource type="PackedScene" uid="uid://b03qsrjda31m1" path="res://Assets/kenney_pirate-kit/Models/FBX format/chest.fbx" id="1_gl0x7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vfpd7"]
+size = Vector3(1.2695313, 0.49621582, 1.2822266)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_etest"]
+height = 1.1886902
+
+[node name="Chest" type="RigidBody3D" unique_id=443765137]
+visible = false
+
+[node name="chest" parent="." unique_id=1511545410 instance=ExtResource("1_gl0x7")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2043627243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0056152344, 0.2518921, -0.0034179688)
+shape = SubResource("BoxShape3D_vfpd7")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1206406251]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.0060577393, 0.6438397, 0)
+shape = SubResource("CylinderShape3D_etest")
