@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://du6emfktee2if"]
+
+[ext_resource type="Script" uid="uid://calvb007541jp" path="res://debris.gd" id="1_e8eya"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s04cq"]
+
+[node name="Debris" type="RigidBody3D" unique_id=1716355888]
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_e8eya")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2016062702]
+shape = SubResource("SphereShape3D_s04cq")

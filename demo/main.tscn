@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://udbflgrsjxeg"]
 
 [ext_resource type="Script" uid="uid://8e2yl50d13q1" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://unftaq7ye1hr" path="res://world.gd" id="1_w48qg"]
 [ext_resource type="PackedScene" uid="uid://cf3oruq66bdcx" path="res://Assets/Turtle.fbx" id="2_cegan"]
 [ext_resource type="PackedScene" uid="uid://c2qi8lkv58c6n" path="res://Assets/kenney_pirate-kit/Models/GLB format/barrel.glb" id="5_getpj"]
 [ext_resource type="PackedScene" uid="uid://t0lkcenbi82d" path="res://Assets/kenney_pirate-kit/Models/GLB format/chest.glb" id="6_ryguw"]
@@ -35,6 +36,7 @@ material = SubResource("StandardMaterial3D_ig7tw")
 size = Vector2(500, 500)
 
 [node name="Node3D" type="Node3D" unique_id=1071602478]
+script = ExtResource("1_w48qg")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1870401565]
 unique_name_in_owner = true
