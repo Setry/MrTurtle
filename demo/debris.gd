@@ -1,3 +1,4 @@
+class_name Debris
 extends RigidBody3D
 
 var debris: Array[PackedScene] = [
@@ -26,4 +27,6 @@ func _process(delta: float) -> void:
 		linear_velocity.y += -position.y * 0.2 - linear_velocity.y * 0.05
 
 func collide(node: Node) -> void:
-	print("DED", node)
+	if node.name == "Player":
+		print("U DED")
+		get_tree().quit(1)
