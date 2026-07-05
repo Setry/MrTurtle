@@ -173,8 +173,8 @@ func _process(_delta: float) -> void:
 	%Ui/Cursor.position = %Ui/Cursor.position.move_toward(aim_pos * get_viewport().get_visible_rect().size, 50)
 
 func shoot() -> void:
-	var turt = preload("res://bubble.tscn")
-	var i_turt: RigidBody3D = turt.instantiate()
+	var bub_packed = preload("res://bubble.tscn")
+	var bub: RigidBody3D = bub_packed.instantiate()
 
 	var screen_position = aim_pos * get_viewport().get_visible_rect().size
 	print(get_viewport().get_screen_transform().affine_inverse() * screen_position)
@@ -182,8 +182,8 @@ func shoot() -> void:
 	var pos = %Camera.project_position(screen_position, 5)
 
 	var dir = pos - position
-	i_turt.position = position + dir.normalized() * 2
-	i_turt.linear_velocity = dir.normalized() * 10 + velocity
+	bub.position = position + dir.normalized() * 2
+	bub.linear_velocity = dir.normalized() * 10 + velocity
 
-	get_parent().add_child(i_turt)
+	get_parent().add_child(bub)
 	pass

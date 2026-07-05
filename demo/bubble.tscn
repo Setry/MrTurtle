@@ -1,33 +1,34 @@
 [gd_scene format=3 uid="uid://c5ftbf5fwv6dx"]
 
 [ext_resource type="Script" uid="uid://d3142dwmjqgn6" path="res://bubble.gd" id="1_y2db8"]
-[ext_resource type="Shader" uid="uid://bygw3ukg86vw1" path="res://Scenes/Bubble.gdshader" id="2_4a276"]
+[ext_resource type="Shader" uid="uid://bygw3ukg86vw1" path="res://Shader/Bubble.gdshader" id="2_4a276"]
 [ext_resource type="Texture2D" uid="uid://cfoanler60onr" path="res://Assets/Texture/colorful.png" id="3_05jx6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s04cq"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4cx2n"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_05jx6"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v028q"]
-noise = SubResource("FastNoiseLite_4cx2n")
+noise = SubResource("FastNoiseLite_05jx6")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1pskq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4cx2n"]
 render_priority = 0
 shader = ExtResource("2_4a276")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_v028q")
 shader_parameter/smoothness = 0.05000000074506
 shader_parameter/color = ExtResource("3_05jx6")
 
-[sub_resource type="SphereMesh" id="SphereMesh_c2d40"]
+[sub_resource type="SphereMesh" id="SphereMesh_1pskq"]
 
 [node name="Bubble" type="RigidBody3D" unique_id=1753213588]
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_y2db8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=993638388]
 shape = SubResource("SphereShape3D_s04cq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1422307479]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_1pskq")
-mesh = SubResource("SphereMesh_c2d40")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1967633278]
+material_override = SubResource("ShaderMaterial_4cx2n")
+mesh = SubResource("SphereMesh_1pskq")
