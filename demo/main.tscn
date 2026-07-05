@@ -42,15 +42,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9311776, 0)
 script = ExtResource("1_ig7tw")
 
 [node name="Body" parent="Player" unique_id=357978126 instance=ExtResource("2_cegan")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -0.2, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1947105507]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_s04cq")
 
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=1059947618]
+[node name="Camera" type="Camera3D" parent="Player" unique_id=1059947618]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.83303475, 0.5532207, 0, -0.5532207, 0.83303475, 0, 1.4421313, 1.97524)
+transform = Transform3D(1, 0, 0, 0, 0.9846983, 0.17426763, 0, -0.17426763, 0.9846983, 0, 1.4421313, 1.97524)
 current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=283253768]

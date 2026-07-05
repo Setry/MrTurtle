@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-const SPEED = 10.0
+const SPEED = 2.0
 const ACCEL_SPEED = 0.1
 const MAX_TURN_SPEED = 0.05
 const TURN_SPEED = 0.005
@@ -142,7 +142,7 @@ func _physics_process(delta: float) -> void:
 	#var input_dir := Input.get_axis("ui_up", "ui_down")
 	#var lr_dir := Input.get_axis("ui_left", "ui_right")
 
-	$Body.rotation.x = move_toward($Body.rotation.x, -ud, 0.05)
+	$Body.rotation.x = move_toward($Body.rotation.x, -ud * 0.5 + 0.5, 0.05)
 	$Body.rotation.z = move_toward($Body.rotation.z, -lr, 0.05)
 
 	if ud < 0:
@@ -176,15 +176,14 @@ func shoot() -> void:
 	var turt = preload("res://bubble.tscn")
 	var i_turt: RigidBody3D = turt.instantiate()
 
-	var shoot_pos = position + transform.basis * Vector3(aim_pos.x * 10, aim_pos.y * 10, -1)
-	var shoot_speed = transform.basis * Vector3(0, 0, -10)
-
 	var screen_position = aim_pos * get_viewport().get_visible_rect().size
 	print(get_viewport().get_screen_transform().affine_inverse() * screen_position)
 
-	%Camera.project_position()
-	i_turt.position = shoot_pos
-	i_turt.linear_velocity = shoot_speed
+	var pos = %Camera.project_position(screen_position, 5)
+
+	var dir = pos - position
+	i_turt.position = position + dir.normalized() * 2
+	i_turt.linear_velocity = dir.normalized() * 10 + velocity
 
 	get_parent().add_child(i_turt)
 	pass
