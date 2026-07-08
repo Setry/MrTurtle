@@ -10,6 +10,9 @@ height = 1.1886902
 
 [node name="Chest" type="RigidBody3D" unique_id=443765137]
 visible = false
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="chest" parent="." unique_id=1511545410 instance=ExtResource("1_gl0x7")]
 

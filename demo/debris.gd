@@ -12,10 +12,15 @@ var debris: Array[PackedScene] = [
 	preload("res://Assets/kenney_pirate-kit/Models/FBX format/bottle-large.fbx"),
 ]
 
+#var debris: Array[PackedScene] = [
+#	preload("res://Scenes/Obj/barrel.tscn")
+#]
+
 func _ready() -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	var d := debris[rng.randi_range(0, len(debris) - 1)]
-	add_child(d.instantiate())
+	var obj = d.instantiate()
+	add_child(obj)
 
 	self.body_entered.connect(collide)
 
@@ -27,6 +32,6 @@ func _process(delta: float) -> void:
 		linear_velocity.y += -position.y * 0.2 - linear_velocity.y * 0.05
 
 func collide(node: Node) -> void:
-	if node.name == "Player":
-		print("U DED")
-		get_tree().quit(1)
+	if node is Player:
+		get_parent().find_child("YouDied").visible = true
+		get_tree().paused = true

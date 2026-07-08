@@ -5,9 +5,45 @@
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2efk4"]
 gradient = SubResource("Gradient_xb563")
 
-[node name="Ui" type="Node2D" unique_id=1662866030]
+[node name="Ui" type="Control" unique_id=388096903]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="Cursor" type="Node2D" parent="." unique_id=1802995809]
 
 [node name="Sprite2D" type="Sprite2D" parent="Cursor" unique_id=1593802171]
 texture = SubResource("GradientTexture2D_2efk4")
+
+[node name="YouDied" type="Label" parent="." unique_id=1963322656]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 431.0
+offset_top = 283.0
+offset_right = 711.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "You got hit by debris and drowned :("
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1473698039]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1523719947]
+layout_mode = 2
+text = "Your score:"
+
+[node name="Score" type="Label" parent="HBoxContainer" unique_id=1114944445]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"

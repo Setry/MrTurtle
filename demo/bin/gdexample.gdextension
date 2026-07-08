@@ -27,10 +27,10 @@ android.release.arm64 = "res://bin/libgdexample.android.template_release.arm64.s
 
 [dependencies]
 linux.debug = {
-    "res://bin/libxwiimote.so.2.0.0": ""
+    "res://bin/libxwiimote.so.2": ""
 }
 linux.release = {
-    "res://bin/libxwiimote.so.2.0.0": ""
+    "res://bin/libxwiimote.so.2": ""
 }
 ios.debug = {
     "res://bin/libgodot-cpp.ios.template_debug.xcframework": ""
