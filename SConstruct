@@ -12,11 +12,15 @@ env = SConscript("godot-cpp/SConstruct")
 # - CPPDEFINES are for pre-processor defines
 # - LINKFLAGS are for linking flags
 
+build_dir = "build/gdwiidev_{}_{}".format(env["platform"], env["target"])
+
+env.VariantDir(build_dir, "src", duplicate=0)
+
 # tweak this if you want to use different folders, or more folders, to store your source code in.
 env.Append(CPPPATH=["src/"])
 env.Append(LIBS=[env.File("build/xwiimote/.libs/libxwiimote.a")])
 
-sources = Glob("src/*.cpp")
+sources = Glob(os.path.join(build_dir, "src/*.cpp"))
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(
