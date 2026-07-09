@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cmwpxis01uynn" path="res://Scenes/Obj/structure.tscn" id="2_45d1s"]
 [ext_resource type="PackedScene" uid="uid://b2m832wbhdscs" path="res://Scenes/Obj/chest.tscn" id="3_y7y61"]
 [ext_resource type="PackedScene" uid="uid://dji2lgrbdvd05" path="res://Scenes/Obj/plattform.tscn" id="4_q2d71"]
-[ext_resource type="PackedScene" uid="uid://b4enik4eigbha" path="res://Assets/kenney_pirate-kit/Models/FBX format/rocks-a.fbx" id="5_uo7di"]
+[ext_resource type="PackedScene" uid="uid://cpsusbxe7c80v" path="res://Scenes/Obj/rocks.tscn" id="6_45d1s"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_45d1s"]
 frequency = 0.016
@@ -24,31 +24,28 @@ size = Vector2(500, 500)
 albedo_color = Color(0.73559433, 0.4834501, 0.27749556, 1)
 subsurf_scatter_transmittance_color = Color(0.62697685, 0.38380027, 1.92523e-07, 1)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_0vrb5"]
-
 [node name="World" type="Node3D" unique_id=391439327]
 
 [node name="Barrel" parent="." unique_id=1001683369 instance=ExtResource("1_45d1s")]
+visible = false
 
 [node name="Plane" type="MeshInstance3D" parent="." unique_id=1700735924]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -7.0065203, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_5nsto")
 mesh = SubResource("QuadMesh_j0i27")
 surface_material_override/0 = SubResource("StandardMaterial3D_eeuas")
 
 [node name="Bottle-large" parent="." unique_id=2031937422 instance=ExtResource("1_p70al")]
-
-[node name="Structure" parent="." unique_id=1644979697 instance=ExtResource("2_45d1s")]
-
-[node name="Chest" parent="." unique_id=443765137 instance=ExtResource("3_y7y61")]
-visible = true
-
-[node name="Plattform" parent="." unique_id=211176596 instance=ExtResource("4_q2d71")]
-
-[node name="RigidBody3D5" type="RigidBody3D" parent="." unique_id=1302428484]
 visible = false
 
-[node name="rocks-a" parent="RigidBody3D5" unique_id=2011762067 instance=ExtResource("5_uo7di")]
+[node name="Structure" parent="." unique_id=1644979697 instance=ExtResource("2_45d1s")]
+visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D5" unique_id=617457107]
-shape = SubResource("CylinderShape3D_0vrb5")
+[node name="Chest" parent="." unique_id=443765137 instance=ExtResource("3_y7y61")]
+
+[node name="Plattform" parent="." unique_id=211176596 instance=ExtResource("4_q2d71")]
+visible = false
+
+[node name="Rocks" parent="." unique_id=653374840 instance=ExtResource("6_45d1s")]
+visible = false
