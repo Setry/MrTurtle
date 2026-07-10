@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 		debris.position = pos
 		debris.linear_velocity = (%Player.position - pos).normalized() * 2
 
-		add_child(debris)
+		#add_child(debris)
 		t = 0
 
 	pass

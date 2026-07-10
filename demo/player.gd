@@ -118,23 +118,42 @@ func _physics_process(delta: float) -> void:
 	#print(board_values)
 
 	var board_v = board_values - board_calibration
-	#print(board_v)
-	var left_sum = max(1, board_v.z + board_v.w)
-	var right_sum = max(1, board_v.x + board_v.y)
+	board_v = Vector4i(max(board_v.x, 0), max(board_v.y, 0), max(board_v.z, 0), max(board_v.w, 0))
+	##print(board_v)
+	#var left_sum = max(1, board_v.z + board_v.w)
+	#var right_sum = max(1, board_v.x + board_v.y)
 
-	var up_sum = max(1, board_v.x + board_v.z)
-	var down_sum = max(1, board_v.y + board_v.w)
+	#var up_sum = max(1, board_v.x + board_v.z)
+	#var down_sum = max(1, board_v.y + board_v.w)
 
-	# Normalize to -1..1
-	var lr = (float(right_sum) / (left_sum + right_sum) - 0.5) * 2
-	#print("L/R: ", lr)
+	## Normalize to -1..1
+	#var lr = (float(right_sum) / (left_sum + right_sum) - 0.5) * 2
+	##print("L/R: ", lr)
 
-	var ud = (float(up_sum) / (up_sum + down_sum) - 0.33) * 2
-	#print("U/D: ", ud)
+	#var ud = (float(up_sum) / (up_sum + down_sum) - 0.33) * 2
+	##print("U/D: ", ud)
 
-	if left_sum + right_sum < 200:
-		lr = 0
-		ud = 0
+	print("Values: ", board_v)
+	var left_ud = (float(board_v.z) / (board_v.z + board_v.w) - 0.5) * 2
+	left_ud = clampf(left_ud * 6, -1, 1)
+	var right_ud = (float(board_v.x) / (board_v.x + board_v.y) - 0.5) * 2
+	right_ud = clampf(right_ud * 6, -1, 1)
+
+	var all_sum = board_v.x + board_v.y + board_v.z + board_v.w
+	if all_sum < 200:
+		left_ud = 0
+		right_ud = 0
+
+	var offset = 0.5
+
+	var vel = (left_ud + right_ud) * SPEED / 2
+	print("Vel: ", vel)
+	var rot = (right_ud - left_ud) / (2 * offset) * SPEED
+	print("Rot: ", rot)
+
+	rotation.y += rot * delta
+	velocity = transform.basis * Vector3(0, 0, -vel)
+	print(left_ud, "/", right_ud)
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept"):
@@ -145,30 +164,30 @@ func _physics_process(delta: float) -> void:
 	#var input_dir := Input.get_axis("ui_up", "ui_down")
 	#var lr_dir := Input.get_axis("ui_left", "ui_right")
 
-	$Body.rotation.x = move_toward($Body.rotation.x, -ud * 0.5 + 0.5, 0.05)
-	$Body.rotation.z = move_toward($Body.rotation.z, -lr, 0.05)
+	#$Body.rotation.x = move_toward($Body.rotation.x, -ud * 0.5 + 0.5, 0.05)
+	#$Body.rotation.z = move_toward($Body.rotation.z, -lr, 0.05)
 
-	if ud < 0:
-		ud *= 0.75
-	else:
-		ud *= 1.5
-	var direction: Vector3 = (transform.basis * Vector3(0, 0, -ud)).normalized() * abs(ud)
-	if direction:
-		velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCEL_SPEED)
-		velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCEL_SPEED)
+	#if ud < 0:
+	#	ud *= 0.75
+	#else:
+	#	ud *= 1.5
+	#var direction: Vector3 = (transform.basis * Vector3(0, 0, -ud)).normalized() * abs(ud)
+	#if direction:
+	#	velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCEL_SPEED)
+	#	velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCEL_SPEED)
 
-	velocity.x *= DRAG
-	velocity.z *= DRAG
+	#velocity.x *= DRAG
+	#velocity.z *= DRAG
 
-	var dir = sign((transform.basis.inverse() * velocity).z)
+	#var dir = sign((transform.basis.inverse() * velocity).z)
 	#print("Speed = ", Vector2(velocity.x, velocity.z).length())
 
-	if abs(lr) > 0.1:
-		angular_speed = move_toward(angular_speed, dir * lr * MAX_TURN_SPEED, abs(lr) * Vector2(velocity.x, velocity.z).length() * TURN_SPEED)
+	#if abs(lr) > 0.1:
+	#	angular_speed = move_toward(angular_speed, dir * lr * MAX_TURN_SPEED, abs(lr) * Vector2(velocity.x, velocity.z).length() * TURN_SPEED)
 
-	angular_speed *= DRAG
+	#angular_speed *= DRAG
 
-	rotation.y += angular_speed
+	#rotation.y += angular_speed
 
 	move_and_slide()
 
